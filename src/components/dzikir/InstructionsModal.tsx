@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Sparkles } from 'lucide-react';
 
 interface InstructionsModalProps {
@@ -6,7 +6,7 @@ interface InstructionsModalProps {
   setShowInstructions: (show: boolean) => void;
 }
 
-const InstructionsModal: React.FC<InstructionsModalProps> = ({ showInstructions, setShowInstructions }) => {
+const InstructionsModalComponent: React.FC<InstructionsModalProps> = ({ showInstructions, setShowInstructions }) => {
   if (!showInstructions) return null;
 
   return (
@@ -34,5 +34,8 @@ const InstructionsModal: React.FC<InstructionsModalProps> = ({ showInstructions,
     </div>
   );
 };
+
+const InstructionsModal = memo(InstructionsModalComponent);
+InstructionsModal.displayName = 'InstructionsModal';
 
 export default InstructionsModal;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { BookOpen, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
@@ -6,7 +6,7 @@ interface HeaderProps {
   setShowInstructions: (show: boolean) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ showInstructions, setShowInstructions }) => {
+const HeaderComponent: React.FC<HeaderProps> = ({ showInstructions, setShowInstructions }) => {
   return (
     <header className="bg-white/80 backdrop-blur-sm border-b border-emerald-100 sticky top-0 z-50">
       <div className="max-w-4xl mx-auto px-4 py-4">
@@ -23,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({ showInstructions, setShowInstructions }
           <button
             onClick={() => setShowInstructions(!showInstructions)}
             className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-medium hover:bg-emerald-200 transition-colors"
+            aria-expanded={showInstructions}
           >
             Panduan
           </button>
@@ -31,5 +32,8 @@ const Header: React.FC<HeaderProps> = ({ showInstructions, setShowInstructions }
     </header>
   );
 };
+
+const Header = memo(HeaderComponent);
+Header.displayName = 'Header';
 
 export default Header;

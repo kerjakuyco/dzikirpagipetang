@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Volume2, VolumeX, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { DzikirItem } from '@/lib/data';
 
 interface ControlsProps {
   isPlaying: boolean;
@@ -10,12 +11,12 @@ interface ControlsProps {
   handleNext: () => void;
   incrementCounter: () => void;
   currentDzikirIndex: number;
-  currentDzikirList: any[];
+  currentDzikirList: DzikirItem[];
   counter: number;
-  currentDzikir: any;
+  currentDzikir: DzikirItem;
 }
 
-const Controls: React.FC<ControlsProps> = ({ 
+const ControlsComponent: React.FC<ControlsProps> = ({ 
   isPlaying,
   toggleAudio,
   handlePrevious,
@@ -33,6 +34,7 @@ const Controls: React.FC<ControlsProps> = ({
       <button
         onClick={toggleAudio}
         className="flex items-center justify-center w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full hover:bg-emerald-200 transition-colors"
+        aria-label={isPlaying ? "Matikan audio" : "Aktifkan audio"}
       >
         {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
       </button>
@@ -55,6 +57,7 @@ const Controls: React.FC<ControlsProps> = ({
         onClick={incrementCounter}
         disabled={counter >= currentDzikir.count}
         className="px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        aria-label="Tambah hitungan"
       >
         +1
       </button>
@@ -76,5 +79,8 @@ const Controls: React.FC<ControlsProps> = ({
     </div>
   );
 };
+
+const Controls = memo(ControlsComponent);
+Controls.displayName = 'Controls';
 
 export default Controls;

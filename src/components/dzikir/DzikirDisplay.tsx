@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Sun, Moon, Heart } from 'lucide-react';
+import { DzikirItem } from '@/lib/data';
 
 interface DzikirDisplayProps {
   activeTab: string;
-  currentDzikir: any;
+  currentDzikir: DzikirItem;
   counter: number;
   currentDzikirIndex: number;
-  currentDzikirList: any[];
+  currentDzikirList: DzikirItem[];
 }
 
-const DzikirDisplay: React.FC<DzikirDisplayProps> = ({ 
+const DzikirDisplayComponent: React.FC<DzikirDisplayProps> = ({ 
   activeTab, 
   currentDzikir,
   counter,
@@ -34,14 +35,14 @@ const DzikirDisplay: React.FC<DzikirDisplayProps> = ({
 
       {/* Arabic Text */}
       <div className="text-center mb-6">
-        <p className="text-2xl font-arabic text-gray-800 leading-relaxed mb-4 text-right">
+        <p className="text-2xl font-arabic text-gray-800 leading-relaxed mb-4 text-right" dir="rtl">
           {currentDzikir.arabic}
         </p>
         <p className="text-lg text-emerald-700 font-medium mb-2">
           {currentDzikir.latin}
         </p>
         <p className="text-gray-600 italic mb-2">
-          "{currentDzikir.translation}"
+          &quot;{currentDzikir.translation}&quot;
         </p>
         {currentDzikir.reference && (
           <p className="text-sm text-gray-500">{currentDzikir.reference}</p>
@@ -79,5 +80,8 @@ const DzikirDisplay: React.FC<DzikirDisplayProps> = ({
     </div>
   );
 };
+
+const DzikirDisplay = memo(DzikirDisplayComponent);
+DzikirDisplay.displayName = 'DzikirDisplay';
 
 export default DzikirDisplay;

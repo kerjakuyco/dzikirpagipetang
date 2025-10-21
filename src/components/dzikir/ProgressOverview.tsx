@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Heart } from 'lucide-react';
+import { DzikirItem } from '@/lib/data';
 
 interface ProgressOverviewProps {
-  currentDzikirList: any[];
+  currentDzikirList: DzikirItem[];
   currentDzikirIndex: number;
   counter: number;
 }
 
-const ProgressOverview: React.FC<ProgressOverviewProps> = ({ 
+const ProgressOverviewComponent: React.FC<ProgressOverviewProps> = ({ 
   currentDzikirList, 
   currentDzikirIndex,
   counter
@@ -43,5 +44,8 @@ const ProgressOverview: React.FC<ProgressOverviewProps> = ({
     </div>
   );
 };
+
+const ProgressOverview = memo(ProgressOverviewComponent);
+ProgressOverview.displayName = 'ProgressOverview';
 
 export default ProgressOverview;

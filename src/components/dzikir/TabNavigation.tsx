@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Sun, Moon } from 'lucide-react';
 
 interface TabNavigationProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
+  activeTab: 'pagi' | 'petang';
+  setActiveTab: (tab: 'pagi' | 'petang') => void;
   setCurrentDzikirIndex: (index: number) => void;
   setCounter: (counter: number) => void;
 }
 
-const TabNavigation: React.FC<TabNavigationProps> = ({ 
+const TabNavigationComponent: React.FC<TabNavigationProps> = ({ 
   activeTab, 
   setActiveTab,
   setCurrentDzikirIndex,
   setCounter
 }) => {
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = (tab: 'pagi' | 'petang') => {
     setActiveTab(tab);
     setCurrentDzikirIndex(0);
     setCounter(0);
@@ -28,6 +28,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
             ? 'bg-emerald-500 text-white shadow-md'
             : 'text-emerald-600 hover:bg-emerald-50'
           }`}
+        aria-selected={activeTab === 'pagi'}
       >
         <Sun className="w-4 h-4" />
         <span>Dzikir Pagi</span>
@@ -38,6 +39,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
             ? 'bg-emerald-500 text-white shadow-md'
             : 'text-emerald-600 hover:bg-emerald-50'
           }`}
+        aria-selected={activeTab === 'petang'}
       >
         <Moon className="w-4 h-4" />
         <span>Dzikir Petang</span>
@@ -45,5 +47,8 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
     </div>
   );
 };
+
+const TabNavigation = memo(TabNavigationComponent);
+TabNavigation.displayName = 'TabNavigation';
 
 export default TabNavigation;
