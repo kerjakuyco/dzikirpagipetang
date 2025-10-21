@@ -7,7 +7,6 @@ import InstructionsModal from './dzikir/InstructionsModal';
 import TabNavigation from './dzikir/TabNavigation';
 import DzikirDisplay from './dzikir/DzikirDisplay';
 import Controls from './dzikir/Controls';
-import ProgressOverview from './dzikir/ProgressOverview';
 
 const DzikirApp = () => {
     const [activeTab, setActiveTab] = useState<'pagi' | 'petang'>('pagi');
@@ -85,14 +84,6 @@ const DzikirApp = () => {
                     counter={counter}
                     currentDzikir={currentDzikir}
                 />
-
-                <div className="mt-6">
-                    <ProgressOverview
-                        currentDzikirList={currentDzikirList}
-                        currentDzikirIndex={currentDzikirIndex}
-                        counter={counter}
-                    />
-                </div>
 
                 {/* Footer */}
                 <footer className="mt-8 text-center text-gray-500 text-sm">
