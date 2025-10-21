@@ -20,7 +20,6 @@ const InstructionsModalComponent: React.FC<InstructionsModalProps> = ({ showInst
           <p>• Pilih tab Dzikir Pagi atau Petang sesuai waktu</p>
           <p>• Baca dzikir dengan khusyuk dan penuh penghayatan</p>
           <p>• Gunakan tombol hitung untuk menghitung bacaan</p>
-          <p>• Fitur audio membantu dalam pengucapan</p>
           <p>• Selesaikan semua dzikir untuk mendapatkan pahala</p>
           <p>• Setiap dzikir dilengkapi dengan faedah dan keutamaannya</p>
         </div>

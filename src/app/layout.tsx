@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   description: "Aplikasi digital untuk membaca dzikir pagi dan petang dengan mudah dan nyaman. Dilengkapi dengan terjemahan dan faedah setiap dzikir.",
   keywords: ["dzikir", "pagi", "petang", "muslim", "islam", "amalan"],
   authors: [{ name: "Pengembang Aplikasi Muslim" }],
-  viewport: "width=device-width, initial-scale=1.0",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
   themeColor: "#10b981",
 };
 

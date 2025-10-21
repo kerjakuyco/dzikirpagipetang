@@ -13,26 +13,11 @@ const DzikirApp = () => {
     const [activeTab, setActiveTab] = useState<'pagi' | 'petang'>('pagi');
     const [currentDzikirIndex, setCurrentDzikirIndex] = useState(0);
     const [counter, setCounter] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(false);
     const [showInstructions, setShowInstructions] = useState(false);
 
     const currentDzikirList = activeTab === 'pagi' ? dzikirPagi : dzikirPetang;
     const currentDzikir: DzikirItem = currentDzikirList[currentDzikirIndex];
 
-    // Mock audio context simulation with cleanup
-    useEffect(() => {
-        let interval: NodeJS.Timeout | null = null;
-        if (isPlaying) {
-            interval = setInterval(() => {
-                setCounter(prev => Math.min(prev + 1, currentDzikir.count));
-            }, 2000);
-        }
-        return () => {
-            if (interval) {
-                clearInterval(interval);
-            }
-        };
-    }, [isPlaying, currentDzikir.count]);
 
     const handleNext = useCallback(() => {
         if (currentDzikirIndex < currentDzikirList.length - 1) {
@@ -56,9 +41,6 @@ const DzikirApp = () => {
         setCounter(currentDzikir.count);
     }, [currentDzikir.count]);
 
-    const toggleAudio = useCallback(() => {
-        setIsPlaying(!isPlaying);
-    }, [isPlaying]);
 
     const incrementCounter = useCallback(() => {
         setCounter(prev => Math.min(prev + 1, currentDzikir.count));
@@ -93,8 +75,6 @@ const DzikirApp = () => {
                 />
 
                 <Controls
-                    isPlaying={isPlaying}
-                    toggleAudio={toggleAudio}
                     handlePrevious={handlePrevious}
                     handleReset={handleReset}
                     handleCompleteAll={handleCompleteAll}

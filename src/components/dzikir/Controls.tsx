@@ -1,10 +1,8 @@
 import React, { memo } from 'react';
-import { Volume2, VolumeX, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
 import { DzikirItem } from '@/lib/data';
 
 interface ControlsProps {
-  isPlaying: boolean;
-  toggleAudio: () => void;
   handlePrevious: () => void;
   handleReset: () => void;
   handleCompleteAll: () => void;
@@ -17,8 +15,6 @@ interface ControlsProps {
 }
 
 const ControlsComponent: React.FC<ControlsProps> = ({ 
-  isPlaying,
-  toggleAudio,
   handlePrevious,
   handleReset,
   handleCompleteAll,
@@ -31,13 +27,6 @@ const ControlsComponent: React.FC<ControlsProps> = ({
 }) => {
   return (
     <div className="flex flex-wrap justify-center gap-3">
-      <button
-        onClick={toggleAudio}
-        className="flex items-center justify-center w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full hover:bg-emerald-200 transition-colors"
-        aria-label={isPlaying ? "Matikan audio" : "Aktifkan audio"}
-      >
-        {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
-      </button>
       <button
         onClick={handlePrevious}
         disabled={currentDzikirIndex === 0}
